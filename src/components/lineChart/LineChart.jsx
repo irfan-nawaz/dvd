@@ -10,7 +10,7 @@ import {
 import { Line, getDatasetAtEvent } from 'react-chartjs-2'
 import { faker } from '@faker-js/faker'
 import { useRef } from 'react'
-import { dataArray, getUniqueSortedDates } from '../../utils/utils'
+import { dataArray, getValuesByKey } from '../../utils/utils'
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,9 +20,8 @@ ChartJS.register(
   Tooltip,
 )
 
-const uniqueSortedDates = getUniqueSortedDates(dataArray)
-
-console.log(uniqueSortedDates)
+const valuesForKeyA = getValuesByKey(dataArray, 'A')
+console.log(valuesForKeyA)
 
 const options = {
   responsive: true,

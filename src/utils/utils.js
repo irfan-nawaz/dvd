@@ -551,7 +551,7 @@ export const dataArray = [
   },
 ]
 
-function getValuesByKey(dataArray, key) {
+export function getValuesByKey(dataArray, key) {
   return dataArray.map((item) => item[key])
 }
 
@@ -587,5 +587,4 @@ export function getUniqueSortedDates(data) {
   return uniqueSortedDates
 }
 
-const valuesForKeyA = getValuesByKey(dataArray, 'A')
-console.log(valuesForKeyA)
+

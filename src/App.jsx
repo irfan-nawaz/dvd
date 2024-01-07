@@ -5,6 +5,12 @@ import Login from './pages/login/Login'
 import { useContext } from 'react'
 import { AuthContext } from './main'
 import { RequiresAuth } from './mods/RequiresAuth'
+import Cookies from 'js-cookie'
+
+var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000)
+Cookies.set('user', 'John Doe', {
+  expires: inFifteenMinutes,
+})
 
 export default function App() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
