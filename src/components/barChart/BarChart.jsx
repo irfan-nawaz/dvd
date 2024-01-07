@@ -7,11 +7,11 @@ import {
   Tooltip,
 } from 'chart.js'
 import { Bar, getElementAtEvent } from 'react-chartjs-2'
-import { faker } from '@faker-js/faker'
 import { useRef } from 'react'
-const labels = ['A', 'B', 'C', 'D', 'E', 'F']
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip)
+
+const labels = ['A', 'B', 'C', 'D', 'E', 'F']
 
 const options = {
   indexAxis: 'y',
@@ -34,31 +34,33 @@ const options = {
   },
 }
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() =>
-        faker.number.int({ min: 10, max: 80, precision: 5 }),
-      ),
+export default function BarChart({ dataArray }) {
+  console.log(dataArray)
+  const chartRef = useRef()
+
+  const chartData = {
+    labels: labels,
+    datasets: dataArray.map((item) => ({
+      label: `Dataset Time`,
+      data: labels.map((label) => item[label]),
       borderColor: 'rgb(0, 85, 255)',
       backgroundColor: 'rgb(0, 85, 255)',
-    },
-  ],
-}
+    })),
+  }
 
-export default function BarChart() {
-  const chartRef = useRef()
   const printElementAtEvent = (element) => {
     if (!element.length) return
 
     const { datasetIndex, index } = element[0]
 
-    console.log(data.labels[index], data.datasets[datasetIndex].data[index])
+    console.log(
+      chartData.labels[index],
+      chartData.datasets[datasetIndex].data[index],
+    )
     console.log(element)
-    alert(data.labels[index], data.datasets[datasetIndex].data[index])
+    alert(chartData.labels[index], chartData.datasets[datasetIndex].data[index])
   }
+
   const onClick = (event) => {
     const { current: chart } = chartRef
 
@@ -68,5 +70,8 @@ export default function BarChart() {
 
     printElementAtEvent(getElementAtEvent(chart, event))
   }
-  return <Bar options={options} data={data} ref={chartRef} onClick={onClick} />
+
+  return (
+    <Bar options={options} data={chartData} ref={chartRef} onClick={onClick} />
+  )
 }

@@ -10,6 +10,7 @@ import {
 import { Line, getDatasetAtEvent } from 'react-chartjs-2'
 import { faker } from '@faker-js/faker'
 import { useRef } from 'react'
+import { dataArray, getUniqueSortedDates } from '../../utils/utils'
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,6 +19,10 @@ ChartJS.register(
   Title,
   Tooltip,
 )
+
+const uniqueSortedDates = getUniqueSortedDates(dataArray)
+
+console.log(uniqueSortedDates)
 
 const options = {
   responsive: true,
@@ -29,7 +34,21 @@ const options = {
   },
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+const labels = [
+  '4/10/2022',
+  '5/10/2022',
+  '6/10/2022',
+  '7/10/2022',
+  '8/10/2022',
+  '9/10/2022',
+  '10/10/2022',
+  '11/10/2022',
+  '12/10/2022',
+  '13/10/2022',
+  '14/10/2022',
+  '15/10/2022',
+  '16/10/2022',
+]
 
 const data = {
   labels,
